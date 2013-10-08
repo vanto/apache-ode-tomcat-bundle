@@ -1,0 +1,14 @@
+filter: &common
+  bitronix.minPoolSize: 10
+  bitronix.maxPoolSize: 50
+
+mysql:
+  filter:
+    <<: *common
+    jdbc.driverClassName: "com.mysql.jdbc.Driver"
+    jdbc.url: "jdbc:mysql://localhost:3306/ode"
+    jdbc.user: "root"
+    jdbc.password: ""
+    jdbc.gav: "mysql:mysql-connector-java:jar:5.1.26"
+    ode.dao: "org.apache.ode.daohib.bpel.BpelDAOConnectionFactoryImpl" # for Hibernate
+    #ode.dao: "org.apache.ode.dao.jpa.BPELDAOConnectionFactoryImpl" # for OpenJPA
