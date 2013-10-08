@@ -37,4 +37,7 @@ NOTE: Please make sure that Apache Buildr and the nokogiri gem is installed. I p
 and you're set.
 
 ## License
-This script, Apache ODE and Apache Tomcat are Apache-licensed. The generated bundle, however, will include the Bitronix Transaction Manager (LGPL) and possibly proprietary licensed JDBC drivers.
+This build script, Apache ODE and Apache Tomcat are Apache-licensed. The generated bundle, however, will include the Bitronix Transaction Manager (LGPL) and possibly proprietary licensed JDBC drivers.
+
+## Credits
+This build script is based on Sathwik Bantwal Premakumar's [blog post](http://sathwikbp.blogspot.de/2013/09/apache-ode-on-tomcat-7-with-bitronix.html) on configuring ODE with Bitronix in Tomcat 7.
