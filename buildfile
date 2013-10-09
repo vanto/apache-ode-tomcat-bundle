@@ -26,6 +26,10 @@ TOMCAT_ZIP = "org.apache.tomcat:tomcat:zip:7.0.42"
 BITRONIX = group("btm", "btm-tomcat55-lifecycle", :under=>"org.codehaus.btm", :version=>"2.1.4")
 SLF4J = ['org.slf4j:slf4j-api:jar:1.6.4', 'org.slf4j:slf4j-jdk14:jar:1.6.4']
 JTA = 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1'
+HIBERNATE = [ "org.hibernate:hibernate:jar:3.2.5.ga", "asm:asm:jar:1.5.3",
+              "antlr:antlr:jar:2.7.6", "cglib:cglib:jar:2.1_3", "net.sf.ehcache:ehcache:jar:1.2.3", 
+              "dom4j:dom4j:jar:1.6.1" ]
+
 
 repositories.remote << "http://repo1.maven.org/maven2"
 
@@ -54,6 +58,10 @@ define "apache-ode-tomcat-bundle" do
 
       # copy BTM libs and JDBC driver to Tomcat
       cp artifacts(BITRONIX, SLF4J, JTA, Buildr.settings.profile['filter']['jdbc.gav']).collect { |t| t.invoke; t.to_s }, _(:target, 'tomcat/lib')
+
+      if Buildr.settings.profile['filter']['ode.dao'] and Buildr.settings.profile['filter']['ode.dao'].include? "daohib"
+        cp artifacts(HIBERNATE).collect { |t| t.invoke; t.to_s }, _(:target, 'tomcat/webapps/ode/WEB-INF/lib')
+      end
 
       # remove unneeded webapps
       rm_rf _(:target, "tomcat/webapps/examples")
