@@ -33,9 +33,6 @@ HIBERNATE = [ "org.hibernate:hibernate:jar:3.2.5.ga", "asm:asm:jar:1.5.3",
 
 repositories.remote << "http://repo1.maven.org/maven2"
 
-# remove me when ODE 1.3.6 is released, this is only the staging directory
-repositories.remote << "https://repository.apache.org/content/repositories/orgapacheode-118/"
-
 desc "The Apache ODE Tomcat Bundle project"
 define "apache-ode-tomcat-bundle" do
 
