@@ -25,14 +25,14 @@ be changed in tomcat/conf/resources.properties later on.
 
 To create the pre-configured bundle, change the settings in `profiles.yaml` and then run
 
-    buildr clean package -e mysql
+    /jruby1.x-x/bin/jruby -S buildr clean package -e mysql
 
 `-e mysql` identifies the mysql profile. If you have added other profiles in your profiles.yaml, you can select them using the `-e` switch.
 
 NOTE: Please make sure that Apache Buildr and the nokogiri gem is installed. I prefer JRuby, so with an installed JRuby, just run
 
-    gem install nokogiri
-    gem install buildr
+    /jruby1.x-x/bin/jruby -S gem install bundler
+    /jruby1.x-x/bin/jruby -S bundle install
 
 and you're set.
 
