@@ -25,16 +25,18 @@ be changed in tomcat/conf/resources.properties later on.
 
 To create the pre-configured bundle, change the settings in `profiles.yaml` and then run
 
-    /jruby1.x-x/bin/jruby -S buildr clean package -e mysql
+    buildr clean package -e mysql
 
 `-e mysql` identifies the mysql profile. If you have added other profiles in your profiles.yaml, you can select them using the `-e` switch.
 
 NOTE: Please make sure that Apache Buildr and the nokogiri gem is installed. I prefer JRuby, so with an installed JRuby, just run
 
-    /jruby1.x-x/bin/jruby -S gem install bundler
-    /jruby1.x-x/bin/jruby -S bundle install
+    gem install bundler
+    bundle install
 
 and you're set.
+
+NOTE: If you use JRuby and don't have added its bin directory to your path, you need to prepend `/jruby1.x-x/bin/jruby -S ` to the `gem`, `bundle` and `buildr` commands above.
 
 ## License
 This build script, Apache ODE and Apache Tomcat are Apache-licensed. The generated bundle, however, will include the Bitronix Transaction Manager (LGPL) and possibly proprietary licensed JDBC drivers.
