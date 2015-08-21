@@ -24,7 +24,7 @@ TOMCAT_ZIP = "org.apache.tomcat:tomcat:zip:7.0.63"
 
 # BTM + dependencies
 BITRONIX = group("btm", "btm-tomcat55-lifecycle", :under=>"org.codehaus.btm", :version=>"2.1.4")
-SLF4J = ['org.slf4j:slf4j-api:jar:1.6.4', 'org.slf4j:slf4j-jdk14:jar:1.6.4']
+SLF4J = ['org.slf4j:slf4j-api:jar:1.7.12', 'org.slf4j:jcl-over-slf4j:jar:1.7.12']
 JTA = 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1'
 HIBERNATE = [ "org.hibernate:hibernate-core:jar:3.3.2.GA", "asm:asm:jar:3.3.1",
               "antlr:antlr:jar:2.7.6", "cglib:cglib:jar:2.2", "net.sf.ehcache:ehcache:jar:1.2.3", 
@@ -76,7 +76,7 @@ define "apache-ode-tomcat-bundle" do
     </resource-ref>
 eos
       webxml = Nokogiri::XML(File.open(_(:target, "tomcat/webapps/ode/WEB-INF/web.xml")))
-      webxml.xpath('//web-app').first.add_child(resourcesxml.root)
+      webxml.xpath('//xmlns:web-app').first.add_child(resourcesxml.root)
       File.open(_(:target, "tomcat/webapps/ode/WEB-INF/web.xml"),'w') {|f| webxml.write_xml_to f}
 
       # add TomcatFactory to ode-axis2.properties
