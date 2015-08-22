@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+  <!-- see http://tomee.apache.org/containers-and-resources.html -->
+  <!-- activate next line to be able to deploy applications in apps -->
+  <!-- <Deployments dir="apps" /> -->
+<TransactionManager type="TransactionManager">
+</TransactionManager>
+
+<Resource id="jdbc/ode" type="DataSource">
+    jdbcDriver=com.mysql.jdbc.Driver
+    jdbcUrl=jdbc:mysql://localhost/ode
+    userName=root
+    password=
+    defaultAutoCommit=false
+    jtaManaged=true
+    initialSize=2
+    maxActive=30
+</Resource>
+</tomee>
