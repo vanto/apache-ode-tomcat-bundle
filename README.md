@@ -24,7 +24,8 @@ In the same fashion, other database setups can be added. All database configurat
 be changed in tomcat/conf/resources.properties later on.
 
 To create the pre-configured bundle, change the settings in `profiles.yaml` and then run
-    For Tomcat
+    
+	For Tomcat
     /jruby1.x-x/bin/jruby -S buildr clean package -e mysql
 	
 	For TomEE
