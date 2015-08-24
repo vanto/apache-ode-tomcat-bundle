@@ -29,6 +29,7 @@ HIBERNATE = [ "org.hibernate:hibernate-core:jar:3.3.2.GA", "asm:asm:jar:3.3.1",
 
 
 repositories.remote << "http://repo1.maven.org/maven2"
+repositories.remote << "https://repository.apache.org/content/groups/snapshots"
 
 desc "The Apache ODE Tomcat Bundle project"
 define "apache-ode-tomee-bundle" do
