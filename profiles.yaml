@@ -9,6 +9,6 @@ mysql:
     jdbc.url: "jdbc:mysql://localhost:3306/ode"
     jdbc.user: "root"
     jdbc.password: ""
-    jdbc.gav: "mysql:mysql-connector-java:jar:5.1.36"
+    jdbc.gav: "mysql:mysql-connector-java:jar:5.1.43"
     ode.dao: "org.apache.ode.daohib.bpel.BpelDAOConnectionFactoryImpl" # for Hibernate
     #ode.dao: "org.apache.ode.dao.jpa.BPELDAOConnectionFactoryImpl" # for OpenJPA
