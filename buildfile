@@ -17,18 +17,20 @@
 require 'nokogiri'
 
 # The ODE version to bundle with Tomcat:
-ODE_WAR = "org.apache.ode:ode-axis2-war:war:1.3.7-SNAPSHOT"
+ODE_WAR = "org.apache.ode:ode-axis2-war:war:1.3.8-SNAPSHOT"
 
 # the Tomcat version to bundle ODE with:
-TOMCAT_ZIP = "org.apache.tomcat:tomcat:zip:7.0.63"
+TOMCAT_ZIP = "org.apache.tomcat:tomcat:zip:8.5.16"
 
 # BTM + dependencies
 BITRONIX = group("btm", "btm-tomcat55-lifecycle", :under=>"org.codehaus.btm", :version=>"2.1.4")
 SLF4J = ['org.slf4j:slf4j-api:jar:1.7.12', 'org.slf4j:jcl-over-slf4j:jar:1.7.12']
-JTA = 'org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1'
-HIBERNATE = [ "org.hibernate:hibernate-core:jar:3.3.2.GA", "asm:asm:jar:3.3.1",
-              "antlr:antlr:jar:2.7.6", "cglib:cglib:jar:2.2", "net.sf.ehcache:ehcache:jar:1.2.3", 
-              "dom4j:dom4j:jar:1.6.1", "javassist:javassist:jar:3.9.0.GA" ]
+JTA = 'org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:jar:1.0.0.Final'
+HIBERNATE = ["org.hibernate:hibernate-core:jar:4.3.11.Final", "org.javassist:javassist:jar:3.18.1-GA", "antlr:antlr:jar:2.7.7",
+                        "dom4j:dom4j:jar:1.6.1", "org.hibernate.common:hibernate-commons-annotations:jar:4.0.5.Final", 
+                        "org.jboss:jandex:jar:1.1.0.Final",  "org.jboss.logging:jboss-logging:jar:3.1.3.GA" , 
+                        "org.jboss.logging:jboss-logging-annotations:jar:1.2.0.Beta1",
+                        "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final"]
 
 repositories.remote << "http://repo1.maven.org/maven2"
 
@@ -38,7 +40,7 @@ define "apache-ode-tomcat-bundle" do
   project.version = artifact(ODE_WAR).version
   project.group = 'de.taval.ode'
 
-  exploded_tomcat = unzip(_("target/tomcat") => artifact(TOMCAT_ZIP)).from_path("apache-tomcat-7.0.63").target
+  exploded_tomcat = unzip(_("target/tomcat") => artifact(TOMCAT_ZIP)).from_path("apache-tomcat-8.5.16").target
   exploded_ode = unzip(_(:target, 'tomcat/webapps/ode') => artifact(ODE_WAR)).target
 
   # filter resources
@@ -64,7 +66,10 @@ define "apache-ode-tomcat-bundle" do
       rm_rf _(:target, "tomcat/webapps/docs")
 
       # remove conflicting jar
-      rm _(:target, "tomcat/webapps/ode/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.jar")
+      rm _(:target, "tomcat/webapps/ode/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar")
+      rm _(:target, "tomcat/webapps/ode/WEB-INF/lib/geronimo-transaction-3.1.3.jar")
+      rm _(:target, "tomcat/webapps/ode/WEB-INF/lib/geronimo-jpa_2.0_spec-1.1.jar")
+
 
       # add resources to web.xml
       resourcesxml  = Nokogiri::XML <<-eos
